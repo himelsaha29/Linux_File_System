@@ -41,11 +41,6 @@ typedef struct {
     char file_name[MAX_FILE_NAME];
 } DirectoryEntry;
 
-typedef struct {
-    int inode_number;
-    iNode* inode;
-    int rwpointer;
-} FileDescriptorTable;
 
 
 void mksfs(int) {
