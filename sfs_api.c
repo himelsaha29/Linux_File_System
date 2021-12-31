@@ -89,6 +89,12 @@ int sfs_fclose(int fileID) {
 
 	if (fdt[fileID].inodeNumber == -1) {  // file already not being read, cannot close an already closed file
 		return -1;
+		
+	} else {     // else set read/write pointer to invalid numbers
+		fdt[fileID].inodeNumber = -1;
+		fdt[fileID].rwpointer = -1;
+    		fdtable[fileID] = NULL;
+
 	}
 }
 
