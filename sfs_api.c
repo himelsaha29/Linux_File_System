@@ -96,6 +96,8 @@ int sfs_fclose(int fileID) {
     		fdtable[fileID] = NULL;
 
 	}
+	
+	return 0;
 }
 
 
