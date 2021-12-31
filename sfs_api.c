@@ -19,6 +19,10 @@ typedef struct {
 
 typedef struct {
     int size;
+    int mode;
+    int linkCount;
+    int uid;
+    int gid;
 
     int pointer1;
     int pointer2;
