@@ -72,10 +72,19 @@ int sfs_fseek(int fileID, int loc) {
   return 0;
 }
 
+int sfs_getnextfilename(char* fname) {
+    int next = 0;
+
+    for (int i = 0; i < 500; i++)  {
+      if(rootDirectory[positionInDir].name == fname) {
+          next = i + 1;
+          break;
+      }
+    }
+    return next;
+}
 
 
-
-int sfs_getnextfilename(char*);
 
 int sfs_getfilesize(const char*);
 
