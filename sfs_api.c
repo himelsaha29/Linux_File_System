@@ -61,6 +61,17 @@ void mksfs(int) {
 
 }
 
+int sfs_fseek(int fileID, int loc) {
+  if (fileID < 0 || loc < 0) {
+    fprintf(stderr, "Bad seek argument");
+    return -1;
+  }
+
+
+  fdtable[fileID].rwpointer = loc;
+  return 0;
+}
+
 
 
 
@@ -75,7 +86,5 @@ int sfs_fclose(int);
 int sfs_fwrite(int, const char*, int);
 
 int sfs_fread(int, char*, int);
-
-int sfs_fseek(int, int);
 
 int sfs_remove(char*);
