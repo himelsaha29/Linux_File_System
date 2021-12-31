@@ -85,12 +85,18 @@ int sfs_getnextfilename(char* fname) {
 }
 
 
+int sfs_fclose(int fileID) {
+
+	if (fdt[fileID].inodeNumber == -1) {  // file already not being read, cannot close an already closed file
+		return -1;
+	}
+}
+
+
 
 int sfs_getfilesize(const char*);
 
 int sfs_fopen(char*);
-
-int sfs_fclose(int);
 
 int sfs_fwrite(int, const char*, int);
 
