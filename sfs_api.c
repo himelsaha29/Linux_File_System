@@ -7,6 +7,9 @@
 #define MAX_FIZE_NUM 256
 #define MAX_FILE_NAME 16
 
+DirectoryEntry rootDirectory[500];
+FileDescriptorTable fdtable[500];
+
 
 typedef struct {
     int magic;
@@ -101,10 +104,14 @@ int sfs_fclose(int fileID) {
 }
 
 
+int sfs_fopen(char* name) {
+  if(name == NULL){  // throw error on invalid argument
+    return -1;
+  }
+}
+
 
 int sfs_getfilesize(const char*);
-
-int sfs_fopen(char*);
 
 int sfs_fwrite(int, const char*, int);
 
