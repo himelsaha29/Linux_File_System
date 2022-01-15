@@ -4,8 +4,11 @@
 #include <unistd.h>
 #include <string.h>
 
-#define MAX_FIZE_NUM 256
-#define MAX_FILE_NAME 16
+#define MAX_FIZE_NUM 256;
+#define MAX_FILE_NAME 16;
+#define SUPERBLOCK 0;
+#define BLOCKSIZE 2048;
+#define SYSTEMNAME "OS.sfs";
 
 DirectoryEntry rootDirectory[500];
 FileDescriptorTable fdtable[500];
@@ -58,9 +61,56 @@ typedef struct {
 
 
 void mksfs(int) {
+	
+if(fresh == 1)  { // create file system
 
 
+  	for (int i = 0; i < 500; i++) { // populate FDTable
+  		fdtable[i].inodeNumber = -1;
+  		fdtable[i].rwpointer = -1;
+ 	}
 
+
+  	for (int i = 0; i < 500; i++) {
+  		iNodeTable[i].mode = -1;
+  		iNodeTable[i].linkCount = -1;
+  		iNodeTable[i].uid = -1;
+  		iNodeTable[i].gid = -1;
+  		iNodeTable[i].size = -1;
+        	iNodeTable[i].pointer1 = -1;
+        	iNodeTable[i].pointer2 = -1;
+        	iNodeTable[i].pointer3 = -1;
+        	iNodeTable[i].pointer4 = -1;
+        	iNodeTable[i].pointer5 = -1;
+        	iNodeTable[i].pointer6 = -1;
+        	iNodeTable[i].pointer7 = -1;
+        	iNodeTable[i].pointer8 = -1;
+        	iNodeTable[i].pointer9 = -1;
+        	iNodeTable[i].pointer10 = -1;
+        	iNodeTable[i].pointer11 = -1;
+        	iNodeTable[i].pointer12 = -1;
+  		iNodeTable[i].indPointer = -1;
+
+  	}
+
+      	for (int i = 0; i < 500; i++)  { // populate root directory
+
+  		rootDirectory[i].iNode = -1;
+  	}
+
+      	init_fresh_disk(SYSTEMNAME, BLOCKSIZE, 2048); // creating new file system
+
+      	 int *superBuffer = malloc(BLOCKSIZE);
+      	 write_blocks(SUPERBLOCK, 1, superBuffer);
+      	 free(superBuffer);
+
+  	 superBlock.magic = 0;
+  	 superBlock.blockSize = BLOCK_SIZE;
+  	 superBlock.fileSystemSize = 2048;
+  	 superBlock.iNodeTable = 500;
+  	 superBlock.rootDirectory = *rootDirectory;
+
+  }
 
 }
 
