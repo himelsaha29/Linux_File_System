@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include "disk_emu.h"
+#include "disk_emu.c"
 
 #define MAX_FIZE_NUM 256;
 #define MAX_FILE_NAME 16;
@@ -125,7 +127,6 @@ int sfs_fseek(int fileID, int loc) {
     fprintf(stderr, "Bad seek argument");
     return -1;
   }
-
 
   fdtable[fileID].rwpointer = loc;
   return 0;
