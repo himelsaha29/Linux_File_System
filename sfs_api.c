@@ -111,6 +111,12 @@ void mksfs(int) {
   	 	superBlock.rootDirectory = *rootDirectory;
 
   	}
+	else {
+  		int error = init_disk(SYSTEMNAME, BLOCKSIZE, 2048);
+      		if (error != 0) {
+        		fprintf(stderr, "Error loading file system");
+      		}
+    	}
 
 }
 
@@ -160,11 +166,3 @@ int sfs_fopen(char* name) {
   }
 }
 
-
-int sfs_getfilesize(const char*);
-
-int sfs_fwrite(int, const char*, int);
-
-int sfs_fread(int, char*, int);
-
-int sfs_remove(char*);
